@@ -1,0 +1,48 @@
+{
+  "name": "vue2-template-admin",
+  "version": "1.0.0",
+  "description": "基于webpack5+element-ui搭建的一个vue2后台系统项目模板",
+  "main": "src/index.js",
+  "scripts": {
+    "watch": "webpack --watch --config ./webpack.prod.js",
+    "serve": "webpack serve --config ./webpack.dev.js",
+    "build": "webpack --config ./webpack.prod.js",
+    "prepare": "husky install",
+    "commitlint": "commitlint",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js}": []
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.3",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.0",
+    "lint-staged": "^13.2.0",
+    "mini-css-extract-plugin": "^2.7.5",
+    "postcss": "^8.4.21",
+    "postcss-cli": "^10.1.0",
+    "postcss-loader": "^7.1.0",
+    "postcss-preset-env": "^8.0.1",
+    "style-loader": "^3.3.2",
+    "vue-loader": "^15.10.1",
+    "vue-style-loader": "^4.1.3",
+    "vue-template-compiler": "^2.7.14",
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "vue": "^2.7.14"
+  }
+}
