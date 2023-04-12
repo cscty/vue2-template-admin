@@ -4,22 +4,10 @@ Vue.use(Vuex)
 import user from './modules/user'
 import side from './modules/side'
 const store = new Vuex.Store({
-  state: {
-    displayMenu: true,
-  },
-  getters: {
-    displayMenu: (state) => state.displayMenu,
-  },
-  actions: {
-    changeDisplayMenu({ commit }, displayMenu) {
-      commit('displayMenu', displayMenu)
-    },
-  },
-  mutations: {
-    displayMenu(state, displayMenu) {
-      state.displayMenu = displayMenu
-    },
-  },
+  state: {},
+  getters: {},
+  actions: {},
+  mutations: {},
   modules: {
     user,
     side,

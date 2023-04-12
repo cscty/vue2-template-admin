@@ -1,21 +1,10 @@
-import VueRouter from 'vue-router'
 export const routes = [
-  { path: '/', redirect: { name: 'home' } },
+  { path: '/', redirect: { name: 'main3' } },
   {
     path: '/home',
     name: 'home',
     component: () => import('../views/home/index.vue'),
     children: [
-      {
-        path: 'main1',
-        name: 'main1',
-        component: () => import('../views/main1/index.vue'),
-      },
-      {
-        path: 'main2',
-        name: 'main2',
-        component: () => import('../views/main2/index.vue'),
-      },
       {
         path: 'main3',
         name: 'main3',
@@ -29,10 +18,3 @@ export const routes = [
     ],
   },
 ]
-const router = new VueRouter({
-  base: window.__POWERED_BY_QIANKUN__ ? '/vue2' : '/',
-  mode: 'history',
-  routes,
-})
-
-export default router

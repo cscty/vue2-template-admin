@@ -34,7 +34,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   async (response) => {
     const { code, message, data } = response.data
-    // console.log('响应拦截器=======xxxx', code, data, message)
+
     if (code === 0 || message === 'success') {
       return response.data
     } else {
@@ -46,6 +46,7 @@ service.interceptors.response.use(
     // 处理 HTTP 网络错误
     let message = ''
     const status = error.response?.status
+
     switch (status) {
       case 401:
         message = 'token 失效，请重新登录'

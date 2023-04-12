@@ -1,4 +1,3 @@
-// import('./bootstrap')
 import './public-path'
 
 import App from '@/App.vue'
@@ -9,7 +8,7 @@ import { formatPerms } from './utils/auth-utils'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import store from './store'
-import router from './router'
+import { routes } from './router'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
@@ -20,18 +19,18 @@ Vue.use(Vuex)
 
 let instance = null
 let history = null
+let router = null
 function render(props = {}) {
   const { container } = props
+  router = new VueRouter({
+    base: '/vue2',
+    mode: window.__POWERED_BY_QIANKUN__ ? 'history' : 'hash',
+    routes,
+  })
   instance = new Vue({
     store,
     router,
-    render: (h) =>
-      h(App, {
-        props: {
-          // 控制导航栏显隐
-          displayMenu: props.displayMenu,
-        },
-      }),
+    render: (h) => h(App),
   }).$mount(container ? container.querySelector('#app') : '#app')
 }
 
@@ -47,9 +46,22 @@ export async function unmount() {
   router = null
   history = null
 }
-if (!window.__POWERED_BY_QIANKUN__) {
-  console.log(12121)
 
+// 模块联邦暴露的data
+export default {
+  data: {
+    a: 1,
+    b: 2,
+  },
+}
+
+window.qiankunLifecycle = {
+  bootstrap,
+  mount,
+  unmount,
+}
+
+if (!window.__POWERED_BY_QIANKUN__) {
   //   主应用运行时，子应用不单独发送请求
   render()
   // 获取用户数据
@@ -65,6 +77,7 @@ if (!window.__POWERED_BY_QIANKUN__) {
         '//dashboard-mng.bilibili.co/loginPage?caller=www-mng-v2'
     }
   )
+
   function setupApplication(data) {
     const result = data.data
     if (!result) {
@@ -78,6 +91,7 @@ if (!window.__POWERED_BY_QIANKUN__) {
       uid: result.uid.toString(),
     })
   }
+
   // 获取导航栏数据
   getNavData().then(
     ({ data }) => {
@@ -85,17 +99,4 @@ if (!window.__POWERED_BY_QIANKUN__) {
     },
     (error) => Promise.reject(error)
   )
-}
-
-// 模块联邦暴露的data
-export default {
-  data: {
-    a: 1,
-    b: 2,
-  },
-}
-window.qiankunLifecycle = {
-  bootstrap,
-  mount,
-  unmount,
 }
